@@ -1,185 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maré de Ideias — Diálogos que nos movem</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Site</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Fonte limpa e moderna -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    body, html {
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #e6f3ff;
-            color: #053b5c;
-        }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
 
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            position: relative;
-            background: linear-gradient(to bottom, #78c6f7, #b3e5ff);
-            overflow: hidden;
-        }
+    .hero img.logo {
+      width: 200px;
+      max-width: 50%;
+      margin-bottom: 20px;
+    }
 
-        /* Área do logo */
-        .logo {
-            max-width: 160px;
-            margin: 0 auto 10px auto;
-            display: block;
-        }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    }
 
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+    .waves {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 20vh;
+      min-height: 150px;
+      overflow: hidden;
+      line-height: 0;
+    }
 
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
+    .wave {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background-repeat: repeat no-repeat;
+      background-position: 0 bottom;
+      transform-origin: center bottom;
+      animation: animateWave 10s linear infinite;
+      opacity: 0.6;
+    }
 
-        /* Ondas animadas */
-        .waves {
-            position: relative;
-            width: 100%;
-            height: 120px;
-            margin-bottom: -7px;
-        }
+    .wave1 {
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L80,128C160,160,320,224,480,218.7C640,213,800,139,960,122.7C1120,107,1280,149,1360,170.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
+      bottom: 0;
+      animation-duration: 15s;
+    }
 
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 100%;
-            background-repeat: repeat no-repeat;
-            bottom: 0;
-            animation: moveWaves 12s linear infinite;
-        }
+    .wave2 {
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="0.2" d="M0,160L80,165.3C160,171,320,181,480,165.3C640,149,800,107,960,101.3C1120,96,1280,128,1360,144L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
+      bottom: 10px;
+      animation-duration: 20s;
+    }
 
-        .wave1 {
-            background-image: url("data:image/svg+xml;utf8,<svg width='1200' height='200' xmlns='http://www.w3.org/2000/svg'><path d='M0 67 C 273 183 441 0 1200 74 V200 H0 Z' fill='%23ffffff'/></svg>");
-            opacity: 0.8;
-            animation-duration: 14s;
-        }
+    .wave3 {
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="0.1" d="M0,192L80,176C160,160,320,128,480,128C640,128,800,160,960,176C1120,192,1280,192,1360,192L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
+      bottom: 20px;
+      animation-duration: 25s;
+    }
 
-        .wave2 {
-            background-image: url("data:image/svg+xml;utf8,<svg width='1200' height='200' xmlns='http://www.w3.org/2000/svg'><path d='M0 77 C 373 223 541 20 1200 94 V200 H0 Z' fill='%23e0f6ff'/></svg>");
-            opacity: 0.6;
-            animation-duration: 18s;
-        }
-
-        @keyframes moveWaves {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Conteúdo */
-        section {
-            padding: 60px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        section h3 {
-            margin-bottom: 10px;
-            font-weight: 600;
-            font-size: 1.6rem;
-        }
-
-        section p {
-            line-height: 1.6rem;
-            margin-bottom: 25px;
-        }
-
-        .grid {
-            display: grid;
-            gap: 25px;
-        }
-
-        @media(min-width: 700px) {
-            .grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 10px;
-            background: #053b5c;
-            color: white;
-        }
-    </style>
+    @keyframes animateWave {
+      0% { transform: translateX(0) translateY(0); }
+      50% { transform: translateX(-25%) translateY(10px); }
+      100% { transform: translateX(-50%) translateY(0); }
+    }
+  </style>
 </head>
 <body>
+  <section class="hero">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>Seu Slogan Aqui</h1>
 
-    <header>
-        <!-- Quando você tiver o novo logo sem fundo, basta substituir o src -->
-        <img class="logo" src="logo.png" alt="Logo Maré de Ideias (provisório)">
-        <h1>Maré de Ideias</h1>
-        <h2>Diálogos que nos movem</h2>
-
-        <!-- Ondas animadas reais -->
-        <div class="waves">
-            <div class="wave wave1"></div>
-            <div class="wave wave2"></div>
-        </div>
-    </header>
-
-    <!-- Seção Descrição -->
-    <section>
-        <h3>Sobre o Canal</h3>
-        <p>
-            O Maré de Ideias é um espaço de reflexão simples, profunda e cotidiana.
-            Cada diálogo é uma onda que nos move — para pensar, para sentir e para agir
-            com mais clareza e humanidade no nosso dia a dia.
-        </p>
-    </section>
-
-    <!-- Seção Projetos -->
-    <section>
-        <h3>Projetos</h3>
-        <div class="grid grid-2">
-            <p>🌀 Série de reflexões semanais</p>
-            <p>🌅 Conversas sobre cotidiano e humanidade</p>
-            <p>🌊 Vídeos curtos e provocações positivas</p>
-            <p>🏖️ Conteúdos especiais para momentos de pausa</p>
-        </div>
-    </section>
-
-    <!-- Publicações -->
-    <section>
-        <h3>Publicações Recentes</h3>
-        <p>(Você poderá adicionar links dos vídeos e textos aqui futuramente.)</p>
-    </section>
-
-    <!-- Redes sociais -->
-    <section>
-        <h3>Redes Sociais</h3>
-        <p>Instagram | YouTube | TikTok | Facebook</p>
-    </section>
-
-    <!-- Depoimentos -->
-    <section>
-        <h3>Depoimentos</h3>
-        <p>“Suas reflexões me ajudam a parar e pensar.”</p>
-        <p>“Conteúdos simples, mas profundos. Obrigado por isso!”</p>
-        <p>“O canal sempre chega no momento certo.”</p>
-    </section>
-
-    <!-- Contato -->
-    <section>
-        <h3>Contato</h3>
-        <p>Email: contato@maredeideias.com</p>
-    </section>
-
-    <footer>
-        &copy; 2025 Maré de Ideias — Diálogos que nos movem
-    </footer>
-
+    <div class="waves">
+      <div class="wave wave1"></div>
+      <div class="wave wave2"></div>
+      <div class="wave wave3"></div>
+    </div>
+  </section>
 </body>
 </html>
